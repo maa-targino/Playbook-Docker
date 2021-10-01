@@ -4,7 +4,7 @@
 
 ## Instalação do Docker no Ubuntu:
 
-#### Neste passo-a-passo vamos instalar o Docker em uma máquina Ubuntu 64 bits. Para realizar a instalação na sua máquina Ubuntu siga os comandos abaixo e execute-os no seu terminal.
+#### Neste passo-a-passo vamos instalar o Docker em uma máquina Ubuntu 20.04. Para realizar a instalação na sua máquina, siga as etapas, copie os comandos e execute-os no seu terminal.
 
 1. Remova as possíveis versões antigas do Docker já instaladas:  
 > sudo apt-get remove docker docker-engine docker.io  
@@ -20,3 +20,12 @@
    "deb [arch=amd64] https&#xfeff;://download.docker.com/linux/ubuntu \  
    $(lsb_release -cs) \  
    stable"  
+
+5. Atualize o gerenciador de pacotes novamente para ter acesso aos novos pacotes do repositório do Docker:
+> sudo apt-get update
+
+6. Instale o pacote **docker-ce**:
+> sudo apt-get install docker-ce
+
+7. Para verificar se o Docker foi instalado corretamente, verifique sua versão:
+> sudo docker --version
