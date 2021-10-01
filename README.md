@@ -5,7 +5,7 @@
 
 ## Implementação do Ansible
 
-![
+![Ansible Logo](https://github.com/maa-targino/Playbook-Docker/blob/main/ansible-logo.png)
 
 ## Implementação do Docker
 
