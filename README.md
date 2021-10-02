@@ -1,15 +1,15 @@
 # Projeto de Bloco: Arquitetura da Infraestrutura de Aplicações
 
 ### Apresentação:
-- Será realizada a execução de uma aplicação Wordpress através de uma playbook Ansible. A aplicação é composta por containers Docker.
+- Será realizada a execução de uma aplicação Wordpress, composta por containers Docker, através de uma playbook Ansible.
 
 ## Implementação do Docker  
 
 # ![Docker Logo](https://github.com/maa-targino/Playbook-Docker/blob/main/docker-logo.png)  
 ### Instalação do Docker no Ubuntu:
 
-- **Neste passo-a-passo vamos instalar o Docker em uma máquina Ubuntu 20.04.  
-Para realizar a instalação na sua máquina, copie os comandos e execute-os no seu terminal.**
+- Neste passo-a-passo vamos instalar o Docker em uma máquina Ubuntu 20.04.  
+Para realizar a instalação na sua máquina, copie os comandos e execute-os no seu terminal.
 
 1. Remova as possíveis versões antigas do Docker já instaladas:  
 > ```
@@ -28,10 +28,10 @@ Para realizar a instalação na sua máquina, copie os comandos e execute-os no 
 
 4. Adicione o repositório do Docker ao **apt**:
 > ```
-> sudo add-apt-repository \  
->   "deb [arch=amd64] https&#xfeff;://download.docker.com/linux/ubuntu \  
->    $(lsb_release -cs) \  
->    stable"
+> sudo add-apt-repository \
+> "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+> $(lsb_release -cs) \
+> stable"
 > ```
 
 5. Atualize o gerenciador de pacotes novamente para ter acesso aos novos pacotes do repositório do Docker:
@@ -49,26 +49,58 @@ Para realizar a instalação na sua máquina, copie os comandos e execute-os no 
 > sudo docker --version
 > ```
 
+### Execução da aplicação Wordpress:
+
+1. Para executarmos o container MySQL:
+> ````
+> sudo docker run --name database -e MYSQL_ROOT_PASSWORD=password -d myslq:5.6
+> ````
+
+2. Verifique se o container já está em execução:
+> ````
+> sudo docker ps
+> ````
+
+3. Para executarmos o container Wordpress:
+> ````
+> docker run --name website --link database:mysql -p 80:80 -d wordpress
+> ````
+
 ## Implementação do Ansible  
 # ![Ansible Logo](https://github.com/maa-targino/Playbook-Docker/blob/main/ansible.png)
 
+- A playbook Ansible é utilizada para automatizar a execução dos containers que fizemos nos passos anteriores. Através do uso de uma única playbook, podemos executar vários containers em um ou mais servidores ao mesmo tempo, sem a necessidade de digitarmos repeditas vezes os mesmos comandos.
+
 ### Instalação do servidor de SSH:
 
-- **Nesta etapa precisaremos primeiro fazer a instalação do servidor de SSH, que é necessário para o uso do Ansible.**
+- Nesta etapa precisaremos primeiro fazer a instalação do servidor de SSH, que é necessário para o uso do Ansible.
 
 1. Faça a instalação do servidor de SSH:
 > ````
 > sudo apt-get install openssh-server
 > ````
 
-2. Altere as permissões de root para o acesso do servidor de SSH:
+2. Digite o seguinte comando até chegar ao diretório raiz:
+> ````
+> cd ..
+> ````
+
+3. No diretório raiz, abra o arquivo de configureçãos do SSH para configurar as permissões de root:
 > ````
 > sudo gedit etc/ssh/sshd_config
 > ````
 
-3. Reinicie o servidor de SSH:
+4. Remova a *#* para descomentar a linha:  
+> *PermitRootLogin yes*
+
+2. Reinicie o servidor de SSH:
 > ````
 > service ssh restart
+> ````
+
+3. Verifique o status do servidor de SSH:
+> ````
+> service ssh status
 > ````
 
 4. Gere uma nova chave SSH:
