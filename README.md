@@ -51,7 +51,7 @@ Para realizar a instalação na sua máquina, copie os comandos e execute-os no 
 
 ### Execução da aplicação Wordpress:
 
-1. Para executarmos o container MySQL:
+1. Para executar o container MySQL:
 > ````
 > sudo docker run --name database -e MYSQL_ROOT_PASSWORD=password -d myslq:5.6
 > ````
@@ -61,7 +61,7 @@ Para realizar a instalação na sua máquina, copie os comandos e execute-os no 
 > sudo docker ps
 > ````
 
-3. Para executarmos o container Wordpress:
+3. Para executar o container Wordpress:
 > ````
 > docker run --name website --link database:mysql -p 80:80 -d wordpress
 > ````
