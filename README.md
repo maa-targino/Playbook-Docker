@@ -193,15 +193,3 @@ Depois, tecle *ENTER* sempre que o sistema solicitar.
 > ````
 > sudo ansible-playbook -i hosts playbook.yml
 > ````
-
-#### 4.1.3 Ao iniciar a execução da playbook você verá algo semelhante a isso:
-
-#### 4.1.4 Ao término da execução da playbook, caso tenha sido bem sucedida você verá o seguinte:
-
-### 4.2 Acesse o Wordpress
-
-#### 4.2.1 Abra o seu browser e acesse o IP do localhost:
-
-> 127.0.0.1/
-
-#### 4.2.2 Você verá uma tela semelhante a essa:
