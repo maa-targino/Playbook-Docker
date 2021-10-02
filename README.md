@@ -1,4 +1,4 @@
-# Projeto de Bloco: Arquitetura de Infraestrutura de Aplicações
+# Projeto de Bloco: Arquitetura da Infraestrutura de Aplicações
 
 ### Apresentação:
 - Será realizada a execução de uma aplicação Wordpress através de uma playbook Ansible. A aplicação é composta por containers Docker.
@@ -23,7 +23,7 @@ Para realizar a instalação na sua máquina, copie os comandos e execute-os no 
 
 3. Adicione a chave oficial do repositório do Docker ao sistema:  
 > ```
-> curl -fsSL https&#xfeff;://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  
+> sudo apt-key fingerprint 0EBFCD88
 > ```
 
 4. Adicione o repositório do Docker ao **apt**:
@@ -96,14 +96,15 @@ Depois, tecle *ENTER* sempre que o sistema solicitar.
 > sudo apt-get update
 > ````
 
-#### 2.2.4 Faça a instalação do Ansible:
+4. Execute a instalação do Ansible:
+> ````
+> sudo apt-get install ansible
+> ````
 
->user@ubuntu:~$ sudo apt-get install ansible
-
-#### 2.2.5 Verifique a versão e confirme se o Ansible foi instalado corretamente:
-
->user@ubuntu:~$ ansible --version
-
+5. Para confirmar que o Ansible foi instalado corretamente você pode verificar a versão:
+> ````
+> ansible --version
+> ````
 
 ### Implementação da playbook Ansible:
 
