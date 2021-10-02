@@ -1,0 +1,29 @@
+---
+ - hosts: vmware
+   remote_user: maata
+   become: yes
+   tasks:
+     - name: Create a virtual machine on given ESXi hostname
+       vmware_guest:
+           hostname: 192.168.205.148
+           username: root
+           password: M4rc074r61n0@
+           validate_certs: no
+           folder: /
+           name: Ubuntu
+           state: poweredoff
+           guest_id: ubuntu64Guest
+#          esxi_hostname: 10.2.11.45
+           disk:
+              - size_gb: 10
+                type: thin
+                datastore: datastore1
+           hardware:
+              memory_mb: 1024
+              num_cpus: 2
+              scsi: paravirtual
+           networks:
+              - name: VM Network
+                device_type: vmxnet3
+       delegate_to: localhost
+       register: deploy_vm

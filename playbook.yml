@@ -1,0 +1,15 @@
+---
+ - hosts: vmware
+   remote_user: maata
+   become: yes
+   tasks: 
+      - name: "Executar o container MySQL"
+        docker_container:
+          name: database
+          image: mysql:5.7
+          env: 
+            MYSQL_ROOT_PASSWORD: judo2016
+      - name: "Executa o container WordPress"
+        docker_container:
+           name: wordpress
+           image: wordpress
